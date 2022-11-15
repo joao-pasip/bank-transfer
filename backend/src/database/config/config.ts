@@ -8,6 +8,9 @@ const config: Options = {
   host: process.env.PGHOST || 'localhost',
   port: Number(process.env.PGPORT) || 5432,
   dialect: 'postgres',
+  define: {
+    timestamps: true,
+  },
 };
 
 module.exports = config;
