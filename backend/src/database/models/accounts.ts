@@ -4,7 +4,7 @@ import db from '.';
 class AccountModel extends Model {
   declare id: number;
 
-  declare balance: string;
+  declare balance: number;
 }
 
 
