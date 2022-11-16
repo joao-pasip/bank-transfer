@@ -42,6 +42,7 @@ TransactionModel.init({
   },
   createdAt: {
     allowNull: false,
+    field: 'created_at',
     type: DataTypes.DATE
   }
 }, {
