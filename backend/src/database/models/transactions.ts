@@ -50,6 +50,14 @@ TransactionModel.init({
   sequelize: db,
   modelName: 'transactions',
   timestamps: false,
-})
+});
+
+// Associations for transactions that debitedAccountId
+TransactionModel.belongsTo(AccountModel, { as: 'debited', foreignKey: 'debitedAccountId' });
+AccountModel.hasMany(TransactionModel, { as: 'debiteds', foreignKey: 'debitedAccountId' });
+
+// Associations for transactions that creditedAccountId
+TransactionModel.belongsTo(AccountModel, { as: 'credited', foreignKey: 'creditedAccountId' });
+AccountModel.hasMany(TransactionModel, { as: 'crediteds', foreignKey: 'creditedAccountId' });
 
 export default TransactionModel;

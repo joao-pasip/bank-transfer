@@ -42,6 +42,14 @@ UserModel.init({
   sequelize: db,
   modelName: 'users',
   timestamps: false,
-})
+});
+
+AccountModel.hasOne(UserModel);
+
+UserModel.belongsTo(AccountModel, {
+  foreignKey: {
+    name: 'accountId'
+  }
+});
 
 export default UserModel;
