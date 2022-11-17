@@ -26,10 +26,10 @@ services:
     environment:
       - PORT=3001
       - JWT_SECRET=jwt_secret
-      - DB_USER=root
-      - DB_PASS=123456
-      - DB_HOST=localhost
-      - DB_PORT=5432
+      - PGUSER=postgres
+      - POSTGRES_PASSWORD=123456
+      - PGHOST=db
+      - PGPORT=5432
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"]
       timeout: 10s
@@ -44,7 +44,6 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
       - POSTGRES_DB=NG_CASH
-      - PGUSER=postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-d", "NG_CASH"]
       interval: 30s
