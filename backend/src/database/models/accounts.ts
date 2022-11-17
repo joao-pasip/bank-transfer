@@ -18,7 +18,7 @@ AccountModel.init({
   balance: {
     allowNull: false,
     type: DataTypes.DECIMAL,
-    defaultValue: 100,
+    defaultValue: 100.00,
   },
 }, {
   underscored: true,
