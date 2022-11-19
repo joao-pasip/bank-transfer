@@ -53,40 +53,5 @@ export default class CadasterService {
     }
 
     return newUser;
-    // try {
-    //   transaction = await sequelize.transaction();
-    //   const { username, password } = user;
-    //   const validatedFields = await this.validated(username, password);
-    //   const hashPassword = BcryptService.encrypt(password);
-
-    //   if(validatedFields) {
-    //     const accountDB = await AccountModel.create({}, { transaction });
-
-    //     await UserModel.create({
-    //       username,
-    //       password: hashPassword,
-    //       accountId: accountDB.id
-    //     }, { transaction });
-
-    //     const token = Jwt.generate({ username });
-  
-    //     newUser = {
-    //       username,
-    //       token,
-    //       balance: accountDB.balance,
-    //     }
-
-    //     return newUser;
-    //   }
-
-    //   console.log('success');
-    //   await transaction.commit();
-
-    // } catch (error) {
-    //   console.log('error');
-    //   if(transaction){
-    //     await transaction.rollback();
-    //   }
-    // }
   }
 }

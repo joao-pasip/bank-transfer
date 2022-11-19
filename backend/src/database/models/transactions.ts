@@ -39,6 +39,9 @@ TransactionModel.init({
   value: {
     allowNull: false,
     type: DataTypes.DECIMAL,
+    get() {
+      return parseFloat(this.getDataValue('value'));
+    }
   },
   createdAt: {
     allowNull: false,
