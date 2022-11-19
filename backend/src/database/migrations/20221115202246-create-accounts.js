@@ -11,7 +11,11 @@ module.exports = {
       },
       balance: {
         allowNull: false,
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL,
+        get() {
+          const value = this.getDataValue('balance');
+          return parseFloat(value);
+        }
       }
     });
   },

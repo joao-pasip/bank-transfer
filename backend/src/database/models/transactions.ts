@@ -18,7 +18,7 @@ TransactionModel.init({
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER.UNSIGNED,
+    type: DataTypes.INTEGER,
   },
   debitedAccountId: {
     allowNull: false,

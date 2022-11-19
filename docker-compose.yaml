@@ -20,6 +20,8 @@ services:
       - 3001:3001
     working_dir: /app-backend
     command: npm run dev
+    volumes: 
+      - ./backend/src:/app-backend/src
     depends_on:
       db:
         condition: service_healthy
@@ -41,15 +43,13 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=postgres
+      - PGUSER=postgres
       - POSTGRES_PASSWORD=123456
       - POSTGRES_DB=NG_CASH
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-d", "NG_CASH"]
-      interval: 30s
       timeout: 60s
       retries: 5
-      start_period: 80s
     restart: 'always'
     cap_add:
       - SYS_NICE

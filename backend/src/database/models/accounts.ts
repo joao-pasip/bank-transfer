@@ -13,11 +13,14 @@ AccountModel.init({
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER.UNSIGNED,
+    type: DataTypes.INTEGER,
   },
   balance: {
     allowNull: false,
-    type: DataTypes.DECIMAL,
+    type: DataTypes.DECIMAL(10, 2),
+    get() {
+      return parseFloat(this.getDataValue('balance'));
+    },
     defaultValue: 100.00,
   },
 }, {
