@@ -48,12 +48,15 @@ export default class TransactionService {
 
   static async postTransaction(token: string, cash_in_user: ICash_in_user) {
     let transactionDone;
-    const user_cash_out = await HomeService.board(token);
+    const user_cash_out: IUser = await HomeService.board(token);
     const user_cash_in = await this.userCashIn(cash_in_user);
     const validated = this.validatedTransaction(user_cash_out, user_cash_in);
     const valueFixed2 = cash_in_user.value.toFixed(2);
 
-    console.log(user_cash_out)
+    // console.log(user_cash_out.balance)
+    if(Number(user_cash_out.balance) - Number(valueFixed2) < 0) {
+      throw new CustomError(401, 'Balance insufficient');
+    }
     // console.log(typeof(user_cash_out.balance))
     
     if(validated) {
@@ -64,8 +67,6 @@ export default class TransactionService {
           value: valueFixed2,
           createdAt: Date()
         }, { transaction: t });
-
-        // const balance_cash_in = user_cash_in.balance + cash_in_user.value
 
         await AccountModel.update({balance: (user_cash_in.balance + cash_in_user.value)
             .toFixed(2)}, {
@@ -88,6 +89,7 @@ export default class TransactionService {
       transactionDone = result;
     }
 
+    transactionDone = 'Transaction done'
     return transactionDone;
   }
 }

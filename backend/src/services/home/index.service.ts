@@ -3,10 +3,11 @@ import AccountModel from '../../database/models/accounts';
 import CustomError from '../../helpers/error/custom.error';
 import * as jwt from 'jsonwebtoken';
 // import * as jwt_decode from 'jwt-decode'
+import { JwtPayload } from '../../interfaces/jwt_payload.interface';
 
-interface JwtPayload {
-  username: string
-}
+// interface JwtPayload {
+//   username: string
+// }
 export default class HomeService {
   static async board(token: string) {
     // if(!token) throw new CustomError(401, 'Token not found');
