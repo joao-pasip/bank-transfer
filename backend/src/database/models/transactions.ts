@@ -1,6 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '.';
 import AccountModel from './accounts';
+// import moment from 'moment';
 
 class TransactionModel extends Model {
   declare id: number;
@@ -46,7 +47,10 @@ TransactionModel.init({
   createdAt: {
     allowNull: false,
     field: 'created_at',
-    type: DataTypes.DATE
+    type: DataTypes.DATE,
+    get() {
+      return this.getDataValue('createdAt').format('DD/MM/YYYY h:mm:ss');
+    }
   }
 }, {
   underscored: true,

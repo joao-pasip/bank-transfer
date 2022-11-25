@@ -1,5 +1,7 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+// import moment from 'moment';
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('transactions', {
@@ -34,7 +36,10 @@ module.exports = {
       createdAt: {
         allowNull: false,
         field: 'created_at',
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        get() {
+          return this.getDataValue('createdAt').format('DD/MM/YYYY h:mm:ss');
+        }
       }
     });
   },

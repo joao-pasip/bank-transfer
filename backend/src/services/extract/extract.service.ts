@@ -41,6 +41,10 @@ export default class ExtractService {
 
           const valueNumber = Number(parseFloat(extract.dataValues.value).toFixed(2));
           // console.log(typeof(valueNumber));
+          const hoursUTC = extract.dataValues.createdAt;
+          const hoursCorrect = hoursUTC.setHours(hoursUTC.getHours() - 3);
+          // console.log(hoursCorrect);
+          
 
           if(
             extract.dataValues.debitedAccountId === formattedUserDebited.accountId &&
@@ -57,7 +61,11 @@ export default class ExtractService {
                 accountId: formattedUserDebited.accountId,
                 username: formattedUserDebited.username
               },
-              date: extract.dataValues.createdAt
+              when: {
+                date: new Date(extract.dataValues.createdAt).toLocaleDateString("pt-BR"),
+                time: new Date(extract.dataValues.createdAt).toLocaleTimeString("pt-BR"),
+                db_date: extract.dataValues.createdAt
+              }
             }
 
             extractFinally = userExtract
